@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useMemo } from "react";
+import { AnimatePresence } from "framer-motion";
 import {
   Star, Swords, ChevronRight, Zap, HelpCircle, ArrowLeft,
   Check, BookOpen, Trophy, FlaskConical, X,
@@ -19,17 +19,15 @@ function shuffle(a) {
 
 /* ─── Visual Components ─────────────────────────────────────────── */
 function Particles({ count = 20, color = "bg-yellow-400" }) {
-  const ps = useMemo(
-    () =>
-      Array.from({ length: count }, (_, i) => ({
-        i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        s: Math.random() * 4 + 2,
-        d: Math.random() * 3 + 2,
-        dl: Math.random() * 2,
-      })),
-    [count]
+  const [ps] = useState(() =>
+    Array.from({ length: count }, (_, i) => ({
+      i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      s: Math.random() * 4 + 2,
+      d: Math.random() * 3 + 2,
+      dl: Math.random() * 2,
+    }))
   );
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -47,16 +45,14 @@ function Particles({ count = 20, color = "bg-yellow-400" }) {
 }
 
 function FloatingEmoji({ emoji, count = 6 }) {
-  const items = useMemo(
-    () =>
-      Array.from({ length: count }, (_, i) => ({
-        i,
-        x: Math.random() * 90 + 5,
-        sz: Math.random() * 20 + 16,
-        d: Math.random() * 6 + 4,
-        dl: Math.random() * 3,
-      })),
-    [count, emoji]
+  const [items] = useState(() =>
+    Array.from({ length: count }, (_, i) => ({
+      i,
+      x: Math.random() * 90 + 5,
+      sz: Math.random() * 20 + 16,
+      d: Math.random() * 6 + 4,
+      dl: Math.random() * 3,
+    }))
   );
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -100,19 +96,17 @@ function HPBar({ current, max, label, color, icon }) {
 }
 
 function Confetti() {
-  const pcs = useMemo(
-    () =>
-      Array.from({ length: 60 }, (_, i) => ({
-        i,
-        x: Math.random() * 100,
-        color: ["bg-yellow-400", "bg-pink-400", "bg-cyan-400", "bg-green-400", "bg-purple-400", "bg-red-400"][i % 6],
-        size: Math.random() * 8 + 4,
-        dur: Math.random() * 2 + 1.5,
-        del: Math.random() * 0.8,
-        rot: Math.random() * 720 - 360,
-        xD: (Math.random() - 0.5) * 200,
-      })),
-    []
+  const [pcs] = useState(() =>
+    Array.from({ length: 60 }, (_, i) => ({
+      i,
+      x: Math.random() * 100,
+      color: ["bg-yellow-400", "bg-pink-400", "bg-cyan-400", "bg-green-400", "bg-purple-400", "bg-red-400"][i % 6],
+      size: Math.random() * 8 + 4,
+      dur: Math.random() * 2 + 1.5,
+      del: Math.random() * 0.8,
+      rot: Math.random() * 720 - 360,
+      xD: (Math.random() - 0.5) * 200,
+    }))
   );
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-50">
@@ -400,7 +394,7 @@ function ZukanScreen({ discovered, onBack }) {
 function FusionScreen({ discovered, onBack }) {
   const discSet = new Set(discovered);
   const available = FUSION_QUIZZES.filter((fq) => fq.components.every((c) => discSet.has(c)));
-  const quizzes = useMemo(() => shuffle(available).slice(0, 5), [available.length]);
+  const [quizzes] = useState(() => shuffle(available).slice(0, 5));
   const [qIdx, setQIdx] = useState(0);
   const [input, setInput] = useState("");
   const [showResult, setShowResult] = useState(null);
@@ -604,17 +598,17 @@ function generateNumberChoices(correct, allElems) {
 }
 
 function GameScreen({ stage, onFinish, onBack }) {
-  const elements = useMemo(() => shuffle(stage.questions), [stage.id]);
+  const [elements] = useState(() => shuffle(stage.questions));
   const totalElements = elements.length; // 9
 
   // For each element, pre-generate choices for all 3 question types
-  const allChoicesMap = useMemo(() => {
-    return elements.map((el) => ({
+  const [allChoicesMap] = useState(() =>
+    elements.map((el) => ({
       nameChoices: generateNameChoices(el, ALL_ELEMENTS),
       symbolChoices: generateSymbolChoices(el, ALL_ELEMENTS),
       numberChoices: generateNumberChoices(el, ALL_ELEMENTS),
-    }));
-  }, [elements]);
+    }))
+  );
 
   const [elIdx, setElIdx] = useState(0); // current element index (0-8)
   const [phase, setPhase] = useState(0); // 0=hint→name, 1=name→symbol, 2=symbol→number
@@ -636,8 +630,8 @@ function GameScreen({ stage, onFinish, onBack }) {
   const questionData = useMemo(() => {
     if (!currentEl || !choices) return null;
     if (phase === 0) {
-      // Show random hint → pick element name
-      const hintText = currentEl.hints[Math.floor(Math.random() * currentEl.hints.length)];
+      // Show hint → pick element name (hint display uses frozenHint)
+      const hintText = currentEl.hints[0];
       return {
         prompt: "このヒントが表す元素は？",
         hint: hintText,
@@ -673,7 +667,7 @@ function GameScreen({ stage, onFinish, onBack }) {
     if (currentEl && phase === 0) {
       setFrozenHint(currentEl.hints[Math.floor(Math.random() * currentEl.hints.length)]);
     }
-  }, [elIdx, phase]);
+  }, [elIdx, phase, currentEl]);
 
   const handleChoice = (value) => {
     if (selected !== null) return;
@@ -699,7 +693,7 @@ function GameScreen({ stage, onFinish, onBack }) {
 
   const advance = () => {
     const wasCorrect = showResult === "correct";
-    const newPhaseCorrect = wasCorrect ? phaseCorrect : phaseCorrect; // already updated in handleChoice
+    const _newPhaseCorrect = wasCorrect ? phaseCorrect : phaseCorrect; // already updated in handleChoice
 
     setSelected(null);
     setShowResult(null);
@@ -748,6 +742,7 @@ function GameScreen({ stage, onFinish, onBack }) {
       }, 1500);
       return () => clearTimeout(t);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Only trigger when HP reaches 0, not when score/cards change after game over
   }, [playerHP]);
 
   if (!questionData) return null;

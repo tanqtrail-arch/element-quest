@@ -5,7 +5,9 @@ const STORAGE_KEY = "eq_save_v2";
 function getStorage() {
   try {
     if (window.storage) return window.storage;
-  } catch {}
+  } catch {
+    // ignore
+  }
   // Fallback to localStorage
   return {
     get: (key) => {
@@ -47,7 +49,9 @@ export function useGameStorage() {
     try {
       const storage = getStorage();
       if (newData) await storage.set(STORAGE_KEY, JSON.stringify(newData));
-    } catch {}
+    } catch {
+      // ignore
+    }
   }, []);
 
   const reset = useCallback(async () => {
