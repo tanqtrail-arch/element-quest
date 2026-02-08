@@ -1,5 +1,5 @@
 export const STAGES_DATA = [
-  { id:1, title:"はじまりの森", description:"生命をつくる基本の元素たち", color:"from-green-400 to-emerald-600", bgColor:"bg-emerald-950", icon:"🌿", enemy:"🌱", cardSheet:"stage-cards/stage1.png",
+  { id:1, title:"はじまりの森", description:"生命をつくる基本の元素たち", color:"from-green-400 to-emerald-600", bgColor:"bg-emerald-950", icon:"🌿", enemy:"🌱", cardSheet:"元素イメージ/stage1.png",
     questions:[
       { answer:"水素",rubi:"すいそ",symbol:"H",number:1,cardCell:[0,0],hints:["宇宙で一番最初に生まれたよ","燃やすと水になるクリーンなエネルギー","原子番号1。一番軽い元素"],trivia:"宇宙の75%は水素でできている！" },
       { answer:"酸素",rubi:"さんそ",symbol:"O",number:8,cardCell:[0,1],hints:["私たちが呼吸で吸っているものだよ","物を燃やすのを助ける働きがある","原子番号8。元素記号はO"],trivia:"地球の地殻で一番多い元素だよ" },
