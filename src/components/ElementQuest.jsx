@@ -807,7 +807,7 @@ function GameScreen({ stage, onFinish, onBack }) {
         <div className="flex-1 flex flex-col items-center justify-center gap-4">
           {/* Current element card */}
           <motion.div className="text-center" animate={shakeEnemy ? { x: [0, -10, 10, -10, 0] } : {}} transition={{ duration: 0.4 }}>
-            {phase === 0 && stage.cardSheet && currentEl.cardCell ? (
+            {stage.cardSheet && currentEl.cardCell ? (
               <div
                 className="w-40 h-40 rounded-2xl border-2 border-amber-400/40 shadow-lg shadow-amber-500/10 overflow-hidden"
                 style={{
