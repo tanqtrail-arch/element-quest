@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { AnimatePresence } from "framer-motion";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Star, Swords, ChevronRight, Zap, HelpCircle, ArrowLeft,
   Check, BookOpen, Trophy, FlaskConical, X,
@@ -194,7 +195,7 @@ function TitleScreen({ onStart }) {
         <p className="text-indigo-400/60 text-sm mb-10">周期表の世界を冒険しよう！</p>
         <motion.button
           onClick={onStart}
-          className="relative px-10 py-4 rounded-2xl font-bold text-lg text-white overflow-hidden cursor-pointer"
+          className="relative px-12 py-5 rounded-2xl font-bold text-xl text-white overflow-hidden cursor-pointer"
           style={{ background: "linear-gradient(135deg,#f59e0b,#d97706)" }}
           whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(245,158,11,0.5)" }}
           whileTap={{ scale: 0.95 }}
@@ -235,7 +236,7 @@ function MapScreen({ clearedStages, perfectStages, stageScores, bestScores, disc
         <div className="flex gap-3 mb-5">
           <motion.button
             onClick={onZukan}
-            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 font-bold text-sm hover:bg-indigo-500/30 transition cursor-pointer"
+            className="flex-1 flex items-center justify-center gap-2 py-4 rounded-xl bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 font-bold text-base hover:bg-indigo-500/30 transition cursor-pointer"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -246,7 +247,7 @@ function MapScreen({ clearedStages, perfectStages, stageScores, bestScores, disc
           </motion.button>
           <motion.button
             onClick={onFusion}
-            className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold text-sm hover:bg-amber-500/30 transition cursor-pointer"
+            className="flex-1 flex items-center justify-center gap-2 py-4 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold text-base hover:bg-amber-500/30 transition cursor-pointer"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -265,7 +266,7 @@ function MapScreen({ clearedStages, perfectStages, stageScores, bestScores, disc
               <motion.div key={stage.id} initial={{ x: idx % 2 === 0 ? -60 : 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: idx * 0.08 }}>
                 <motion.button
                   onClick={() => onSelectStage(stage.id)}
-                  className="w-full relative rounded-2xl p-4 border-2 text-left transition-all border-white/10 bg-white/5 backdrop-blur-sm hover:border-white/25 hover:bg-white/10 cursor-pointer"
+                  className="w-full relative rounded-2xl p-5 border-2 text-left transition-all border-white/10 bg-white/5 backdrop-blur-sm hover:border-white/25 hover:bg-white/10 cursor-pointer"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -280,7 +281,7 @@ function MapScreen({ clearedStages, perfectStages, stageScores, bestScores, disc
                         {perfect && <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 font-bold">PERFECT</span>}
                         {cleared && !perfect && <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 font-bold">CLEAR</span>}
                       </div>
-                      <h3 className="text-white font-bold text-lg truncate">{stage.title}</h3>
+                      <h3 className="text-white font-bold text-xl truncate">{stage.title}</h3>
                       <div className="flex items-center gap-3 mt-1">
                         {score && (
                           <span className="text-white/50 text-xs">
@@ -326,8 +327,8 @@ function ZukanScreen({ discovered, onBack }) {
     >
       <div className="max-w-lg mx-auto relative z-10">
         <div className="flex items-center gap-3 mb-4">
-          <button onClick={onBack} className="text-white/40 hover:text-white/80 transition cursor-pointer p-2">
-            <ArrowLeft size={20} />
+          <button onClick={onBack} className="text-white/40 hover:text-white/80 transition cursor-pointer p-3 -ml-1">
+            <ArrowLeft size={24} />
           </button>
           <h2 className="text-2xl font-black text-white flex-1">📖 元素図鑑</h2>
           <span className="text-sm text-white/50 font-mono">
@@ -346,7 +347,7 @@ function ZukanScreen({ discovered, onBack }) {
             <button
               key={s.id}
               onClick={() => setSelectedStage(s.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition cursor-pointer ${
+              className={`px-4 py-2.5 rounded-lg text-sm font-bold whitespace-nowrap transition cursor-pointer ${
                 selectedStage === s.id
                   ? "bg-indigo-500/30 text-indigo-300 border border-indigo-500/40"
                   : "bg-white/5 text-white/40 border border-white/10 hover:bg-white/10"
@@ -418,7 +419,7 @@ function FusionScreen({ discovered, onBack }) {
             <br />
             まずは冒険で元素を集めよう！
           </p>
-          <motion.button onClick={onBack} className="px-8 py-3 rounded-xl bg-white/10 border border-white/20 text-white font-bold cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.button onClick={onBack} className="px-8 py-4 rounded-xl bg-white/10 border border-white/20 text-white font-bold text-lg cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             戻る
           </motion.button>
         </div>
@@ -451,13 +452,13 @@ function FusionScreen({ discovered, onBack }) {
                 setShowResult(null);
                 setInput("");
               }}
-              className="px-6 py-3 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold cursor-pointer"
+              className="px-8 py-4 rounded-xl bg-amber-500/20 border border-amber-500/30 text-amber-300 font-bold text-lg cursor-pointer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               もう一度
             </motion.button>
-            <motion.button onClick={onBack} className="px-6 py-3 rounded-xl bg-white/10 border border-white/20 text-white font-bold cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.button onClick={onBack} className="px-8 py-4 rounded-xl bg-white/10 border border-white/20 text-white font-bold text-lg cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               戻る
             </motion.button>
           </div>
@@ -496,10 +497,10 @@ function FusionScreen({ discovered, onBack }) {
       <FloatingEmoji emoji="🧪" count={4} />
       <div className="relative z-10 flex flex-col min-h-screen max-w-lg mx-auto w-full px-4 py-4">
         <div className="flex items-center gap-2 mb-4">
-          <button onClick={onBack} className="text-white/40 hover:text-white/80 cursor-pointer p-2">
-            <ArrowLeft size={20} />
+          <button onClick={onBack} className="text-white/40 hover:text-white/80 cursor-pointer p-3 -ml-1">
+            <ArrowLeft size={24} />
           </button>
-          <span className="text-white/50 text-xs font-mono flex-1">合体クイズ</span>
+          <span className="text-white/50 text-sm font-mono flex-1">合体クイズ</span>
           <span className="text-white/50 text-xs">
             {qIdx + 1}/{quizzes.length}
           </span>
@@ -530,7 +531,7 @@ function FusionScreen({ discovered, onBack }) {
             {showResult === "correct" && (
               <motion.div key="fc" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="w-full p-4 rounded-2xl border-2 text-center bg-green-500/10 border-green-500/30">
                 <p className="text-green-400 font-black text-lg">🎉 正解！ {fq.answer}</p>
-                <motion.button onClick={advance} className="mt-3 px-6 py-2 rounded-xl bg-white/10 border border-white/20 text-white font-bold text-sm cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.button onClick={advance} className="mt-3 px-8 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-bold text-base cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   {qIdx + 1 < quizzes.length ? "次へ →" : "結果を見る →"}
                 </motion.button>
               </motion.div>
@@ -541,7 +542,7 @@ function FusionScreen({ discovered, onBack }) {
                 <p className="text-white/60 text-sm">
                   答え: <span className="text-white font-bold">{fq.answer}</span>
                 </p>
-                <motion.button onClick={advance} className="mt-3 px-6 py-2 rounded-xl bg-white/10 border border-white/20 text-white font-bold text-sm cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.button onClick={advance} className="mt-3 px-8 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-bold text-base cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   {qIdx + 1 < quizzes.length ? "次へ →" : "結果を見る →"}
                 </motion.button>
               </motion.div>
@@ -557,12 +558,12 @@ function FusionScreen({ discovered, onBack }) {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
                   placeholder="できる物質の名前は？"
-                  className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 outline-none focus:border-white/40 text-base"
+                  className="flex-1 px-4 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/30 outline-none focus:border-white/40 text-lg"
                 />
                 <motion.button
                   onClick={handleSubmit}
                   disabled={!input.trim()}
-                  className={`px-5 py-3 rounded-xl font-bold text-white cursor-pointer ${input.trim() ? "bg-gradient-to-r from-amber-500 to-orange-500" : "bg-white/10 text-white/30 cursor-not-allowed"}`}
+                  className={`px-6 py-4 rounded-xl font-bold text-white cursor-pointer ${input.trim() ? "bg-gradient-to-r from-amber-500 to-orange-500" : "bg-white/10 text-white/30 cursor-not-allowed"}`}
                   whileHover={input.trim() ? { scale: 1.05 } : {}}
                   whileTap={input.trim() ? { scale: 0.95 } : {}}
                 >
@@ -756,14 +757,14 @@ function GameScreen({ stage, onFinish, onBack }) {
       <div className="relative z-10 flex flex-col min-h-screen max-w-lg mx-auto w-full px-4 py-4">
         {/* Header */}
         <div className="flex items-center gap-2 mb-3">
-          <button onClick={onBack} className="text-white/40 hover:text-white/80 cursor-pointer p-2">
-            <ArrowLeft size={20} />
+          <button onClick={onBack} className="text-white/40 hover:text-white/80 cursor-pointer p-3 -ml-1">
+            <ArrowLeft size={24} />
           </button>
-          <span className="text-white/50 text-xs font-mono flex-1">
+          <span className="text-white/50 text-sm font-mono flex-1">
             STAGE {stage.id} — {stage.title}
           </span>
-          <span className="text-amber-400/80 text-xs font-mono flex items-center gap-1">
-            <Trophy size={12} />
+          <span className="text-amber-400/80 text-sm font-mono flex items-center gap-1">
+            <Trophy size={14} />
             {totalScore.toLocaleString()}
           </span>
         </div>
@@ -774,11 +775,11 @@ function GameScreen({ stage, onFinish, onBack }) {
         </div>
 
         {/* Element progress dots */}
-        <div className="flex items-center justify-center gap-1.5 mb-2 flex-wrap">
+        <div className="flex items-center justify-center gap-2 mb-3 flex-wrap">
           {elements.map((el, i) => (
             <div
               key={el.symbol}
-              className={`w-3 h-3 rounded-full border transition-all ${
+              className={`w-4 h-4 rounded-full border transition-all ${
                 collectedCards.includes(el.symbol)
                   ? "bg-green-400 border-green-400"
                   : i === elIdx
@@ -792,12 +793,12 @@ function GameScreen({ stage, onFinish, onBack }) {
         </div>
 
         {/* Status bar */}
-        <div className="flex items-center justify-center gap-3 mb-3">
-          <div className="text-xs text-white/40">
+        <div className="flex items-center justify-center gap-4 mb-4">
+          <div className="text-sm text-white/40">
             カード <span className="text-white font-bold">{collectedCards.length}</span>/{clearThreshold}
           </div>
-          {collectedCards.length >= clearThreshold && <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 font-bold animate-pulse">クリア確定！</span>}
-          <div className="text-xs text-white/30">
+          {collectedCards.length >= clearThreshold && <span className="text-sm px-3 py-1 rounded-full bg-green-500/20 text-green-400 font-bold animate-pulse">クリア確定！</span>}
+          <div className="text-sm text-white/30">
             元素 {elIdx + 1}/{totalElements}
           </div>
         </div>
@@ -806,7 +807,17 @@ function GameScreen({ stage, onFinish, onBack }) {
         <div className="flex-1 flex flex-col items-center justify-center gap-4">
           {/* Current element card */}
           <motion.div className="text-center" animate={shakeEnemy ? { x: [0, -10, 10, -10, 0] } : {}} transition={{ duration: 0.4 }}>
-            {phase === 0 ? <ElementCard element={currentEl} size="lg" revealed={false} /> : <ElementCard element={currentEl} size="lg" revealed={true} />}
+            {phase === 0 && currentEl.cardImg ? (
+              <img
+                src={`${import.meta.env.BASE_URL}${currentEl.cardImg}`}
+                alt="ヒント"
+                className="w-40 h-40 rounded-2xl border-2 border-amber-400/40 shadow-lg shadow-amber-500/10 object-cover"
+              />
+            ) : phase === 0 ? (
+              <ElementCard element={currentEl} size="lg" revealed={false} />
+            ) : (
+              <ElementCard element={currentEl} size="lg" revealed={true} />
+            )}
           </motion.div>
 
           {/* Phase indicator */}
@@ -814,7 +825,7 @@ function GameScreen({ stage, onFinish, onBack }) {
             {[0, 1, 2].map((p) => (
               <div
                 key={p}
-                className={`w-8 h-1.5 rounded-full transition-all ${
+                className={`w-10 h-2 rounded-full transition-all ${
                   p < phase ? (phaseCorrect > p ? "bg-green-400" : "bg-red-400/50") : p === phase ? "bg-white" : "bg-white/15"
                 }`}
               />
@@ -840,12 +851,12 @@ function GameScreen({ stage, onFinish, onBack }) {
                 <p className="text-white/80 text-sm leading-relaxed pt-0.5">{actualHint}</p>
               </motion.div>
             )}
-            <p className="text-white/90 text-center font-bold mb-3">{questionData.prompt}</p>
+            <p className="text-white/90 text-center font-bold text-lg mb-4">{questionData.prompt}</p>
           </div>
 
           {/* Choices */}
           {!showResult && playerHP > 0 && (
-            <div className="w-full grid grid-cols-2 gap-3">
+            <div className="w-full grid grid-cols-2 gap-4">
               {questionData.options.map((opt, i) => (
                 <motion.button
                   key={`${opt.value}-${i}`}
@@ -857,10 +868,10 @@ function GameScreen({ stage, onFinish, onBack }) {
                   whileHover={{ scale: 1.05, y: -4 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <div className="relative flex items-center gap-3 rounded-2xl border-2 border-white/15 bg-gradient-to-br from-slate-700/80 to-slate-900/80 backdrop-blur-sm shadow-lg overflow-hidden w-full py-3.5 px-4 min-h-[56px] hover:border-white/30 hover:bg-white/10 active:scale-95 transition-all">
+                  <div className="relative flex items-center gap-3 rounded-2xl border-2 border-white/15 bg-gradient-to-br from-slate-700/80 to-slate-900/80 backdrop-blur-sm shadow-lg overflow-hidden w-full py-5 px-5 min-h-[72px] hover:border-white/30 hover:bg-white/10 active:scale-95 transition-all">
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-                    <span className="text-white font-bold text-base">{opt.label}</span>
-                    {opt.sublabel && <span className="text-white/30 text-xs">{opt.sublabel}</span>}
+                    <span className="text-white font-bold text-lg">{opt.label}</span>
+                    {opt.sublabel && <span className="text-white/40 text-sm">{opt.sublabel}</span>}
                   </div>
                 </motion.button>
               ))}
@@ -869,16 +880,16 @@ function GameScreen({ stage, onFinish, onBack }) {
 
           {/* Result with choices highlighted */}
           {showResult && playerHP > 0 && (
-            <div className="w-full grid grid-cols-2 gap-3">
+            <div className="w-full grid grid-cols-2 gap-4">
               {questionData.options.map((opt, i) => {
                 const isCorrect = opt.value === questionData.correctValue;
                 const isSelected = opt.value === selected;
                 const bc = isCorrect ? "border-green-400 bg-green-500/10" : isSelected ? "border-red-400 bg-red-500/10" : "border-white/5 opacity-40";
                 return (
                   <div key={`${opt.value}-${i}`} className={`relative rounded-2xl border-2 ${bc}`}>
-                    <div className="relative flex items-center gap-3 rounded-2xl overflow-hidden w-full py-3.5 px-4 min-h-[56px]">
-                      <span className="text-white font-bold text-base">{opt.label}</span>
-                      {opt.sublabel && <span className="text-white/30 text-xs">{opt.sublabel}</span>}
+                    <div className="relative flex items-center gap-3 rounded-2xl overflow-hidden w-full py-5 px-5 min-h-[72px]">
+                      <span className="text-white font-bold text-lg">{opt.label}</span>
+                      {opt.sublabel && <span className="text-white/40 text-sm">{opt.sublabel}</span>}
                     </div>
                     {isCorrect && (
                       <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
@@ -894,21 +905,21 @@ function GameScreen({ stage, onFinish, onBack }) {
           {/* Result message */}
           <AnimatePresence>
             {showResult === "correct" && (
-              <motion.div key="c" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }} className="w-full p-3 rounded-2xl border-2 text-center bg-green-500/10 border-green-500/30">
-                <p className="text-green-400 font-black text-lg">⚔️ 正解！</p>
-                {phase === 2 && phaseCorrect === 3 && <p className="text-amber-300 text-sm font-bold mt-1">🎴 {currentEl.answer} カードゲット！</p>}
-                <motion.button onClick={advance} className="mt-2 px-6 py-2 rounded-xl bg-white/10 border border-white/20 text-white font-bold text-sm cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div key="c" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }} className="w-full p-4 rounded-2xl border-2 text-center bg-green-500/10 border-green-500/30">
+                <p className="text-green-400 font-black text-xl">⚔️ 正解！</p>
+                {phase === 2 && phaseCorrect === 3 && <p className="text-amber-300 text-base font-bold mt-1">🎴 {currentEl.answer} カードゲット！</p>}
+                <motion.button onClick={advance} className="mt-3 px-8 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-bold text-base cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   {phase < 2 ? `次の問題（Q${phase + 2}）→` : elIdx + 1 < totalElements ? "次の元素へ →" : "結果を見る →"}
                 </motion.button>
               </motion.div>
             )}
             {showResult === "wrong" && (
-              <motion.div key="w" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }} className="w-full p-3 rounded-2xl border-2 text-center bg-red-500/10 border-red-500/30">
-                <p className="text-red-400 font-black text-lg">💥 不正解！</p>
-                <p className="text-white/50 text-xs">
+              <motion.div key="w" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }} className="w-full p-4 rounded-2xl border-2 text-center bg-red-500/10 border-red-500/30">
+                <p className="text-red-400 font-black text-xl">💥 不正解！</p>
+                <p className="text-white/60 text-sm">
                   正解: {questionData.correctValue}
                 </p>
-                <motion.button onClick={advance} className="mt-2 px-6 py-2 rounded-xl bg-white/10 border border-white/20 text-white font-bold text-sm cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.button onClick={advance} className="mt-3 px-8 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white font-bold text-base cursor-pointer" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   {phase < 2 ? `次の問題（Q${phase + 2}）→` : elIdx + 1 < totalElements ? "次の元素へ →" : "結果を見る →"}
                 </motion.button>
               </motion.div>
