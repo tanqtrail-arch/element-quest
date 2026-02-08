@@ -807,14 +807,11 @@ function GameScreen({ stage, onFinish, onBack }) {
         <div className="flex-1 flex flex-col items-center justify-center gap-4">
           {/* Current element card */}
           <motion.div className="text-center" animate={shakeEnemy ? { x: [0, -10, 10, -10, 0] } : {}} transition={{ duration: 0.4 }}>
-            {phase === 0 && stage.cardImage && currentEl.cardPos ? (
-              <div
-                className="w-40 h-40 rounded-2xl border-2 border-amber-400/40 shadow-lg shadow-amber-500/10 overflow-hidden"
-                style={{
-                  backgroundImage: `url(${import.meta.env.BASE_URL}${stage.cardImage})`,
-                  backgroundSize: "300% 300%",
-                  backgroundPosition: `${currentEl.cardPos[1] * 50}% ${currentEl.cardPos[0] * 50}%`,
-                }}
+            {phase === 0 && currentEl.cardImg ? (
+              <img
+                src={`${import.meta.env.BASE_URL}${currentEl.cardImg}`}
+                alt="ヒント"
+                className="w-40 h-40 rounded-2xl border-2 border-amber-400/40 shadow-lg shadow-amber-500/10 object-cover"
               />
             ) : phase === 0 ? (
               <ElementCard element={currentEl} size="lg" revealed={false} />
