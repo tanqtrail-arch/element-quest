@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { AnimatePresence } from "framer-motion";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Star, Swords, ChevronRight, Zap, HelpCircle, ArrowLeft,
   Check, BookOpen, Trophy, FlaskConical, X,
