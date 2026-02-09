@@ -807,13 +807,13 @@ function GameScreen({ stage, onFinish, onBack }) {
         <div className="flex-1 flex flex-col items-center justify-center gap-4">
           {/* Current element card */}
           <motion.div className="text-center" animate={shakeEnemy ? { x: [0, -10, 10, -10, 0] } : {}} transition={{ duration: 0.4 }}>
-            {stage.cardSheet && currentEl.cardCell ? (
+            {stage.cardSheet && Array.isArray(currentEl.cardCell) ? (
               <div
                 className="w-40 h-40 rounded-2xl border-2 border-amber-400/40 shadow-lg shadow-amber-500/10 overflow-hidden"
                 style={{
                   backgroundImage: `url(${import.meta.env.BASE_URL}${stage.cardSheet})`,
                   backgroundSize: "300% 300%",
-                  backgroundPosition: `${currentEl.cardCell[1] * 50}% ${currentEl.cardCell[0] * 50}%`,
+                  backgroundPosition: `${(currentEl.cardCell[1] ?? 0) * 50}% ${(currentEl.cardCell[0] ?? 0) * 50}%`,
                 }}
               />
             ) : phase === 0 ? (
