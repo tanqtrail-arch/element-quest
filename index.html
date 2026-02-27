@@ -13,5 +13,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- ===== 🆕 TRAIL共通ナビ ===== -->
+    <script src="trail-nav.js"></script>
+    <script>
+    TrailNav.init({
+      gameName: '元素クエスト',
+      gameEmoji: '⚗️',
+      gameHomeId: 'root',
+      tgp32Url: 'https://trail-game-pro-3-2.onrender.com',
+      apiBase: 'https://trail-game-pro-3-2.onrender.com/api',
+    });
+    </script>
   </body>
 </html>
